@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carga de la sorpresa</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      height: 100vh;
+      background-color: #e76bbe;
+    }
+
+    #header-title {
+      font-size: 32px;
+      color: #fff;
+      margin-bottom: 110px;
+    }
+
+    #loader-container {
+      text-align: center;
+    }
+
+    #loader-bar-container {
+      position: relative;
+    }
+
+    #loader-bar {
+      width: 500px; /* Hacer la barra más larga */
+      height: 20px;
+      background-color: #ddd;
+      border-radius: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #progress-bar {
+      height: 100%;
+      width: 0;
+      background-color: #f06;
+      border-radius: 10px;
+      transition: width 0.5s ease-in-out;
+    }
+
+    #heart {
+      position: absolute;
+      top: -40px; /* Ajustar la posición del corazón arriba de la barra */
+      left: 5px; /* Colocar el corazón al inicio de la barra */
+      font-size: 30px;
+      color: #fff; /* Hacer el corazón blanco inicialmente */
+      transition: color 0.5s ease-in-out, left 0.5s ease-in-out;
+    }
+
+    #loading-title {
+      font-size: 20px;
+      margin-top: 10px;
+      color: #fff; /* Color del texto */
+    }
+
+    #additional-title {
+      font-size: 28px;
+      margin-top: 20px;
+      color: #fff; /* Color del texto adicional */
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="header-title">¡Bienvenida amorcito espera mientras carga la sorpresa 😉!</div>
+
+  <div id="loader-container">
+    <div id="loader-bar-container">
+      <div id="heart">❤️</div>
+      <div id="loader-bar">
+        <div id="progress-bar"></div>
+      </div>
+    </div>
+    <div id="loading-title">Llenando la barra de todo el amor que tu novio tiene hacia ti 😘</div>
+    <div id="additional-title">¡Cargando la sorpresa para mi princesa 👑!</div>
+  </div>
+
+  <script>
+    // Simula el progreso de la barra de carga
+    function simulateProgress() {
+      const progressBar = document.getElementById("progress-bar");
+      const heart = document.getElementById("heart");
+
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += 5; // Ajusta la velocidad de la barra de carga
+        progressBar.style.width = progress + "%";
+        heart.style.left = `calc(${progress}% - 30px)`; // Ajustar la posición del corazón
+
+        // Cambiar gradualmente el color del corazón a medida que avanza la carga
+        const colorValue = Math.min(255, Math.floor(progress * 2.55));
+        heart.style.color = `rgb(${255 - colorValue}, ${colorValue}, ${colorValue})`;
+
+        if (progress >= 100) {
+          clearInterval(interval);
+          // Cuando la carga esté completa, redirige al HTML actual
+          window.location.href = "Principal.html";
+        }
+      }, 500); // Ajusta el intervalo según tu preferencia
+    }
+
+    // Llama a la función para simular la carga al cargar la página
+    window.onload = simulateProgress;
+  </script>
+
+</body>
+
+</html>
